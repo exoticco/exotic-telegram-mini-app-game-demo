@@ -28,7 +28,6 @@
             --text-secondary: rgba(255, 255, 255, 0.7);
             --gradient-1: linear-gradient(135deg, #8A2BE2, #FF6B6B);
             --gradient-2: linear-gradient(135deg, #FF6B6B, #FFD700);
-            --gradient-3: linear-gradient(135deg, #00FF9D, #8A2BE2);
             --shadow: 0 8px 32px rgba(138, 43, 226, 0.3);
         }
 
@@ -45,220 +44,117 @@
         .app-container {
             max-width: 450px;
             width: 100%;
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(180deg, #0A0A0A 0%, #1A1A1A 100%);
             display: flex;
             flex-direction: column;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(138, 43, 226, 0.2);
         }
 
         .bg-animation {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
 
+        /* Header */
         .app-header {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
-            padding: 20px 16px 12px;
+            padding: 16px;
             border-bottom: 1px solid rgba(138, 43, 226, 0.3);
-            position: relative;
+            position: sticky;
+            top: 0;
             z-index: 10;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+            margin-bottom: 12px;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .logo h1 {
             font-size: 24px;
-            font-weight: bold;
-            transform: rotate(45deg);
-            box-shadow: var(--shadow);
-        }
-
-        .logo-icon span {
-            transform: rotate(-45deg);
-        }
-
-        .logo-text {
-            font-size: 20px;
-            font-weight: 800;
             background: var(--gradient-1);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .header-actions {
+        .stats-row {
             display: flex;
+            justify-content: space-between;
             gap: 12px;
         }
 
-        .header-btn {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .stats-bar {
-            display: flex;
-            justify-content: space-between;
+        .stat-card {
+            flex: 1;
             background: rgba(138, 43, 226, 0.1);
             border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 20px;
-            padding: 12px 16px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-item {
+            border-radius: 16px;
+            padding: 12px;
             text-align: center;
-            flex: 1;
         }
 
         .stat-label {
             font-size: 11px;
             color: var(--text-secondary);
-            margin-bottom: 4px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .stat-value {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
-            background: var(--gradient-1);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--accent);
         }
 
-        .pages-container {
+        /* Main Content */
+        .main-content {
             flex: 1;
-            overflow-y: auto;
             padding: 16px;
             position: relative;
             z-index: 5;
-            scroll-behavior: smooth;
         }
 
-        .pages-container::-webkit-scrollbar {
-            width: 0;
-            background: transparent;
-        }
-
-        .page {
-            display: none;
-            animation: fadeInUp 0.4s ease;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Mining Card - Main Feature */
+        /* Mining Card */
         .mining-card {
             background: var(--card-bg);
             border: 1px solid rgba(138, 43, 226, 0.3);
             border-radius: 32px;
-            padding: 24px;
+            padding: 32px 24px;
+            text-align: center;
             margin-bottom: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
         }
 
-        .mining-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .mining-status {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .status-icon {
-            width: 80px;
-            height: 80px;
+        .mining-icon {
+            width: 100px;
+            height: 100px;
             background: var(--gradient-1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            font-size: 40px;
+            font-size: 48px;
             animation: pulse 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.9; }
         }
 
-        .countdown-timer {
-            margin: 20px 0;
-        }
-
-        .timer-value {
+        .timer {
             font-size: 48px;
             font-weight: 800;
             font-family: monospace;
@@ -267,54 +163,9 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 4px;
+            margin: 16px 0;
         }
 
-        .timer-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 8px;
-        }
-
-        /* Progress Circle */
-        .progress-circle {
-            width: 200px;
-            height: 200px;
-            margin: 20px auto;
-            position: relative;
-        }
-
-        .circle-chart {
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-        }
-
-        .circle-bg {
-            stroke: rgba(255, 255, 255, 0.1);
-            stroke-width: 8;
-            fill: none;
-        }
-
-        .circle-fill {
-            stroke: url(#gradient);
-            stroke-width: 8;
-            fill: none;
-            stroke-dasharray: 283;
-            stroke-dashoffset: 283;
-            transition: stroke-dashoffset 0.5s ease;
-            stroke-linecap: round;
-        }
-
-        .progress-text {
-            fill: var(--text-primary);
-            font-size: 24px;
-            font-weight: bold;
-            dominant-baseline: middle;
-            text-anchor: middle;
-            transform: rotate(90deg);
-        }
-
-        /* Mining Button */
         .mining-button {
             background: var(--gradient-1);
             border: none;
@@ -324,26 +175,9 @@
             font-size: 18px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
-            margin: 20px 0;
             width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mining-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .mining-button:hover::before {
-            left: 100%;
+            margin: 16px 0;
+            transition: transform 0.2s;
         }
 
         .mining-button:active {
@@ -368,70 +202,22 @@
         .reward-preview {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            padding: 16px;
-            margin-top: 20px;
+            padding: 12px;
+            margin-top: 16px;
         }
 
-        .preview-item {
+        .reward-preview p {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 14px;
+            margin: 8px 0;
         }
 
-        .preview-item strong {
-            color: var(--accent);
-        }
-
-        /* Boost Card */
-        .boost-card {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 107, 107, 0.2));
-            border: 1px solid rgba(138, 43, 226, 0.5);
-            border-radius: 24px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .boost-card i {
-            font-size: 40px;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-
-        .boost-card h3 {
-            margin-bottom: 8px;
-        }
-
-        .boost-btn {
-            background: var(--gradient-2);
-            border: none;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 12px;
-            transition: all 0.2s;
-        }
-
-        /* Upgrades Grid */
+        /* Upgrades */
         .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 24px 0 16px;
-        }
-
-        .section-title h2 {
-            font-size: 20px;
-            font-weight: 800;
-            background: var(--gradient-1);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 20px 0 12px;
+            color: var(--text-primary);
         }
 
         .upgrades-grid {
@@ -443,342 +229,121 @@
         .upgrade-card {
             background: var(--card-bg);
             border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 24px;
+            border-radius: 20px;
             padding: 16px;
             cursor: pointer;
             transition: all 0.2s;
-            position: relative;
         }
 
-        .upgrade-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-1);
-            border-radius: 24px 24px 0 0;
-        }
-
-        .upgrade-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary);
+        .upgrade-card:active {
+            transform: scale(0.98);
         }
 
         .upgrade-card.disabled {
             opacity: 0.5;
-            filter: grayscale(0.5);
             pointer-events: none;
         }
 
         .upgrade-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(138, 43, 226, 0.2);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 12px;
+            font-size: 28px;
+            margin-bottom: 8px;
         }
 
         .upgrade-title {
             font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 14px;
         }
 
         .upgrade-desc {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            margin: 4px 0;
         }
 
         .upgrade-footer {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
+            margin-top: 12px;
+            font-size: 12px;
         }
 
         .upgrade-price {
             color: var(--accent);
-            font-weight: 700;
         }
 
-        .upgrade-level {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-        }
-
-        /* Streak Display */
-        .streak-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 24px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .streak-value {
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .streak-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        .streak-bonus {
-            margin-top: 12px;
-            padding: 8px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 12px;
-            font-size: 12px;
-        }
-
-        /* Tasks Page */
-        .social-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .social-header h1 {
-            font-size: 28px;
-            font-weight: 800;
-            background: var(--gradient-2);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tasks-grid {
+        /* Tasks */
+        .tasks-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
         }
 
-        .task-card {
+        .task-item {
             background: var(--card-bg);
             border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 24px;
+            border-radius: 20px;
             padding: 16px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
         }
 
         .task-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
+            font-size: 24px;
         }
 
-        .task-icon.telegram { background: linear-gradient(135deg, #0088cc, #005e9c); }
-        .task-icon.twitter { background: linear-gradient(135deg, #1DA1F2, #0d8bcf); }
+        .task-icon.telegram { background: #0088cc; }
+        .task-icon.twitter { background: #1DA1F2; }
         .task-icon.instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcaf45); }
 
-        .task-content {
+        .task-info {
             flex: 1;
         }
 
-        .task-title {
-            font-size: 16px;
+        .task-name {
             font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .task-desc {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
         }
 
         .task-reward {
-            display: inline-block;
-            background: rgba(255, 215, 0, 0.1);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
+            font-size: 12px;
             color: var(--accent);
         }
 
-        .task-button {
+        .task-btn {
             background: var(--gradient-1);
             border: none;
             color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 12px;
-            font-weight: 600;
             cursor: pointer;
-            min-width: 80px;
         }
 
-        .task-button.completed {
+        .task-btn.completed {
             background: var(--success);
             pointer-events: none;
         }
 
-        /* Profile Page */
-        .profile-header {
-            background: var(--gradient-1);
-            border-radius: 32px;
-            padding: 30px 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-avatar {
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            margin: 0 auto 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-        }
-
-        .profile-name {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .profile-rank {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 14px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .stat-block {
+        /* Streak Card */
+        .streak-card {
             background: var(--card-bg);
             border: 1px solid rgba(138, 43, 226, 0.3);
             border-radius: 20px;
             padding: 16px;
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .stat-block-value {
-            font-size: 20px;
+        .streak-value {
+            font-size: 36px;
             font-weight: 800;
             color: var(--accent);
-        }
-
-        /* Settings Page */
-        .settings-section {
-            background: var(--card-bg);
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 24px;
-            padding: 20px;
-            margin-bottom: 16px;
-        }
-
-        .settings-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            text-transform: uppercase;
-        }
-
-        .settings-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            cursor: pointer;
-        }
-
-        .settings-item:last-child {
-            border-bottom: none;
-        }
-
-        .settings-item-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .settings-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(138, 43, 226, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Switch Toggle */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 52px;
-            height: 28px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(255, 255, 255, 0.1);
-            transition: .3s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 22px;
-            width: 22px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .3s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background: var(--gradient-1);
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(22px);
         }
 
         /* Bottom Navigation */
@@ -787,9 +352,10 @@
             backdrop-filter: blur(20px);
             display: flex;
             justify-content: space-around;
-            padding: 12px 8px;
+            padding: 12px;
             border-top: 1px solid rgba(138, 43, 226, 0.3);
-            position: relative;
+            position: sticky;
+            bottom: 0;
             z-index: 10;
         }
 
@@ -799,8 +365,8 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
-            padding: 8px 4px;
-            border-radius: 16px;
+            padding: 8px;
+            border-radius: 12px;
             cursor: pointer;
             color: var(--text-secondary);
             font-size: 11px;
@@ -816,10 +382,10 @@
             background: rgba(138, 43, 226, 0.1);
         }
 
-        /* Notifications */
+        /* Notification */
         .notification {
             position: fixed;
-            top: 20px;
+            bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--gradient-1);
@@ -828,459 +394,266 @@
             border-radius: 30px;
             font-size: 14px;
             z-index: 1000;
-            animation: slideDown 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: var(--shadow);
+            animation: slideUp 0.3s ease;
+            white-space: nowrap;
         }
 
-        @keyframes slideDown {
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translate(-50%, -20px);
+                transform: translateX(-50%) translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translate(-50%, 0);
+                transform: translateX(-50%) translateY(0);
             }
         }
 
-        /* Reward Animation */
-        .reward-animation {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2000;
-            animation: rewardPop 1s ease-out forwards;
+        /* Pages */
+        .page {
+            display: none;
         }
 
-        .reward-content {
-            background: var(--gradient-1);
-            border-radius: 60px;
-            padding: 20px 40px;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(138, 43, 226, 0.8);
-        }
-
-        .reward-content i {
-            font-size: 48px;
+        .page.active {
             display: block;
-            margin-bottom: 12px;
-        }
-
-        .reward-amount {
-            font-size: 32px;
-            font-weight: 800;
-            display: block;
-        }
-
-        .reward-multiplier {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        @keyframes rewardPop {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-            50% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-
-        /* Loading */
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(138, 43, 226, 0.3);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <div class="bg-animation"></div>
+    
     <div class="app-container">
-        <div class="bg-animation"></div>
-        
-        <svg style="position: absolute; width: 0; height: 0;">
-            <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#8A2BE2"/>
-                    <stop offset="100%" stop-color="#FF6B6B"/>
-                </linearGradient>
-            </defs>
-        </svg>
-        
         <div class="app-header">
-            <div class="header-top">
-                <div class="logo">
-                    <div class="logo-icon"><span>₿</span></div>
-                    <span class="logo-text">EXOTIC CO</span>
-                </div>
-                <div class="header-actions">
-                    <button class="header-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i></button>
-                </div>
+            <div class="logo">
+                <h1>⛏️ EXOTIC MINER</h1>
+                <i class="fas fa-bolt" style="color: var(--accent);"></i>
             </div>
-            
-            <div class="stats-bar">
-                <div class="stat-item">
+            <div class="stats-row">
+                <div class="stat-card">
                     <div class="stat-label">BALANCE</div>
                     <div class="stat-value" id="balanceDisplay">0</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-card">
                     <div class="stat-label">MINING LVL</div>
-                    <div class="stat-value" id="miningLevel">1</div>
+                    <div class="stat-value" id="levelDisplay">1</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-card">
                     <div class="stat-label">STREAK</div>
                     <div class="stat-value" id="streakDisplay">0</div>
                 </div>
             </div>
         </div>
 
-        <div class="pages-container" id="pagesContainer">
-            <!-- Home Page - Mining -->
+        <div class="main-content">
+            <!-- Home Page -->
             <div class="page active" id="homePage">
                 <div class="mining-card">
-                    <div class="mining-status">
-                        <div class="status-icon" id="statusIcon">
-                            <i class="fas fa-microchip"></i>
-                        </div>
-                        
-                        <div class="countdown-timer" id="countdownContainer">
-                            <div class="timer-value" id="timerDisplay">--:--:--</div>
-                            <div class="timer-label">UNTIL REWARD</div>
-                        </div>
-                        
-                        <div class="progress-circle" id="progressCircle">
-                            <svg class="circle-chart" viewBox="0 0 100 100">
-                                <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
-                                <circle class="circle-fill" cx="50" cy="50" r="45"></circle>
-                                <text class="progress-text" x="50" y="55">0%</text>
-                            </svg>
-                        </div>
-                        
-                        <button class="mining-button" id="miningActionBtn">
-                            START MINING
-                        </button>
-                        
-                        <div class="reward-preview">
-                            <div class="preview-item">
-                                <span>Expected Reward:</span>
-                                <strong id="expectedReward">0</strong>
-                            </div>
-                            <div class="preview-item">
-                                <span>Multiplier:</span>
-                                <strong id="multiplierDisplay">1.0x</strong>
-                            </div>
-                            <div class="preview-item">
-                                <span>Crit Chance:</span>
-                                <strong id="critDisplay">0%</strong>
-                            </div>
-                        </div>
+                    <div class="mining-icon" id="miningIcon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    
+                    <div class="timer" id="timerDisplay">--:--:--</div>
+                    
+                    <button class="mining-button" id="actionBtn">START MINING</button>
+                    
+                    <div class="reward-preview">
+                        <p><span>💰 Expected Reward:</span> <strong id="expectedReward">0</strong></p>
+                        <p><span>⚡ Multiplier:</span> <strong id="multiplierDisplay">1.0x</strong></p>
+                        <p><span>🎯 Crit Chance:</span> <strong id="critDisplay">0%</strong></p>
                     </div>
                 </div>
-                
-                <div class="streak-card" id="streakCard">
+
+                <div class="streak-card">
                     <div class="streak-value" id="streakValue">0</div>
-                    <div class="streak-label">DAY STREAK</div>
-                    <div class="streak-bonus" id="streakBonus">
-                        Next bonus at 7 days: +500
-                    </div>
+                    <div class="stat-label">DAY STREAK</div>
+                    <div style="font-size: 12px; margin-top: 8px;" id="streakBonus">Next bonus at 7 days: +500</div>
                 </div>
-                
-                <div class="section-title">
-                    <h2>MINING UPGRADES</h2>
-                    <span id="totalLevelDisplay">TOTAL 1</span>
-                </div>
-                
+
+                <div class="section-title">⚡ QUICK UPGRADES</div>
                 <div class="upgrades-grid">
                     <div class="upgrade-card" id="upgradeMining">
                         <div class="upgrade-icon"><i class="fas fa-chart-line"></i></div>
                         <div class="upgrade-title">Mining Power</div>
-                        <div class="upgrade-desc">+10% mining reward</div>
+                        <div class="upgrade-desc">+10% reward</div>
                         <div class="upgrade-footer">
-                            <span class="upgrade-price"><i class="fas fa-coins"></i> <span id="miningPrice">100</span></span>
-                            <span class="upgrade-level" id="miningLevelDisplay">Lv.1</span>
+                            <span class="upgrade-price" id="miningPrice">100</span>
+                            <span id="miningLevel">Lv.1</span>
                         </div>
                     </div>
-                    
-                    <div class="upgrade-card" id="upgradeSpeed">
-                        <div class="upgrade-icon"><i class="fas fa-bolt"></i></div>
-                        <div class="upgrade-title">Speed Boost</div>
-                        <div class="upgrade-desc">-2% mining time</div>
-                        <div class="upgrade-footer">
-                            <span class="upgrade-price"><i class="fas fa-coins"></i> <span id="speedPrice">500</span></span>
-                            <span class="upgrade-level" id="speedLevelDisplay">Lv.0</span>
-                        </div>
-                    </div>
-                    
                     <div class="upgrade-card" id="upgradeBoost">
                         <div class="upgrade-icon"><i class="fas fa-rocket"></i></div>
                         <div class="upgrade-title">Boost Power</div>
-                        <div class="upgrade-desc">+5% all earnings</div>
+                        <div class="upgrade-desc">+5% earnings</div>
                         <div class="upgrade-footer">
-                            <span class="upgrade-price"><i class="fas fa-coins"></i> <span id="boostPrice">1000</span></span>
-                            <span class="upgrade-level" id="boostLevelDisplay">Lv.0</span>
+                            <span class="upgrade-price" id="boostPrice">1000</span>
+                            <span id="boostLevel">Lv.0</span>
                         </div>
                     </div>
-                    
-                    <div class="upgrade-card" id="upgradeCrit">
-                        <div class="upgrade-icon"><i class="fas fa-star"></i></div>
-                        <div class="upgrade-title">Critical Hit</div>
-                        <div class="upgrade-desc">+5% crit chance (2x)</div>
-                        <div class="upgrade-footer">
-                            <span class="upgrade-price"><i class="fas fa-coins"></i> <span id="critPrice">2000</span></span>
-                            <span class="upgrade-level" id="critLevelDisplay">Lv.0</span>
-                        </div>
-                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 12px;">
+                    <button id="viewAllUpgradesBtn" style="background: none; border: none; color: var(--primary); cursor: pointer;">View All Upgrades →</button>
                 </div>
             </div>
-            
-            <!-- Tasks Page -->
-            <div class="page" id="tasksPage">
-                <div class="social-header">
-                    <h1>SOCIAL TASKS</h1>
-                    <div class="social-subtitle">Complete tasks to boost mining rewards</div>
-                </div>
-                
-                <div class="tasks-grid">
-                    <div class="task-card">
-                        <div class="task-icon telegram"><i class="fab fa-telegram-plane"></i></div>
-                        <div class="task-content">
-                            <div class="task-title">Join Telegram Channel</div>
-                            <div class="task-desc">@exoticcoofficial</div>
-                            <div class="task-reward"><i class="fas fa-coins"></i> +500</div>
-                        </div>
-                        <button class="task-button" id="taskTelegram" data-task="telegram">CHECK</button>
-                    </div>
-                    
-                    <div class="task-card">
-                        <div class="task-icon telegram"><i class="fab fa-telegram"></i></div>
-                        <div class="task-content">
-                            <div class="task-title">Join Telegram Group</div>
-                            <div class="task-desc">@exoticcoofficialchat</div>
-                            <div class="task-reward"><i class="fas fa-coins"></i> +500</div>
-                        </div>
-                        <button class="task-button" id="taskTelegramGroup" data-task="telegram_group">CHECK</button>
-                    </div>
-                    
-                    <div class="task-card">
-                        <div class="task-icon twitter"><i class="fab fa-twitter"></i></div>
-                        <div class="task-content">
-                            <div class="task-title">Follow on Twitter</div>
-                            <div class="task-desc">@ExoticCoDev</div>
-                            <div class="task-reward"><i class="fas fa-coins"></i> +1000</div>
-                        </div>
-                        <button class="task-button" id="taskTwitter" data-task="twitter">CHECK</button>
-                    </div>
-                    
-                    <div class="task-card">
-                        <div class="task-icon instagram"><i class="fab fa-instagram"></i></div>
-                        <div class="task-content">
-                            <div class="task-title">Follow on Instagram</div>
-                            <div class="task-desc">@exoticcoofficial</div>
-                            <div class="task-reward"><i class="fas fa-coins"></i> +1000</div>
-                        </div>
-                        <button class="task-button" id="taskInstagram" data-task="instagram">CHECK</button>
-                    </div>
-                    
-                    <div class="task-card">
-                        <div class="task-icon" style="background: var(--gradient-1);"><i class="fas fa-crown"></i></div>
-                        <div class="task-content">
-                            <div class="task-title">Complete All Tasks</div>
-                            <div class="task-desc">Bonus for completing all social tasks</div>
-                            <div class="task-reward"><i class="fas fa-coins"></i> +5000</div>
-                        </div>
-                        <button class="task-button" id="taskAll" data-task="all" disabled>LOCKED</button>
-                    </div>
-                </div>
-                
-                <div class="settings-section" style="margin-top: 20px;">
-                    <div class="settings-title">TASK PROGRESS</div>
-                    <div class="progress-section">
-                        <div class="progress-header">
-                            <span>Overall Completion</span>
-                            <span id="taskProgressPercent">0%</span>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" id="taskProgressBar" style="width: 0%; height: 8px; background: var(--gradient-1); border-radius: 10px;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+
             <!-- Upgrades Page -->
             <div class="page" id="upgradesPage">
-                <div class="social-header">
-                    <h1>UPGRADES</h1>
-                    <div class="social-subtitle">Enhance your mining power</div>
-                </div>
-                
-                <div class="settings-section">
-                    <div class="settings-title">MINING STATS</div>
-                    <div class="preview-item"><span>Mining Power:</span> <strong id="statMiningPower">+0%</strong></div>
-                    <div class="preview-item"><span>Time Reduction:</span> <strong id="statTimeReduction">0%</strong></div>
-                    <div class="preview-item"><span>Earnings Bonus:</span> <strong id="statEarningsBonus">+0%</strong></div>
-                    <div class="preview-item"><span>Critical Chance:</span> <strong id="statCritChance">0%</strong></div>
-                </div>
-                
-                <div class="upgrades-grid" style="margin-top: 20px;">
-                    <div class="upgrade-card" id="upgradeMiningPage">
+                <div class="section-title">📈 ALL UPGRADES</div>
+                <div class="upgrades-grid">
+                    <div class="upgrade-card" id="upgradeMiningFull">
                         <div class="upgrade-icon"><i class="fas fa-chart-line"></i></div>
                         <div class="upgrade-title">Mining Power</div>
                         <div class="upgrade-desc">+10% mining reward per level</div>
                         <div class="upgrade-footer">
-                            <span class="upgrade-price"><i class="fas fa-coins"></i> <span id="miningPricePage">100</span></span>
-                            <span class="upgrade-level" id="miningLevelPage">Lv.1</span>
+                            <span class="upgrade-price" id="miningPriceFull">100</span>
+                            <span id="miningLevelFull">Lv.1</span>
                         </div>
                     </div>
-                    
-                    <div class="upgrade-card" id="upgradeSpeedPage">
+                    <div class="upgrade-card" id="upgradeSpeed">
                         <div class="upgrade-icon"><i class="fas fa-bolt"></i></div>
                         <div class="upgrade-title">Speed Boost</div>
                         <div class="upgrade-desc">-2% mining time per level</div>
                         <div class="upgrade-footer">
-                            <span class="upgrade-price"><i class="fas fa-coins"></i> <span id="speedPricePage">500</span></span>
-                            <span class="upgrade-level" id="speedLevelPage">Lv.0</span>
+                            <span class="upgrade-price" id="speedPrice">500</span>
+                            <span id="speedLevel">Lv.0</span>
                         </div>
                     </div>
-                    
-                    <div class="upgrade-card" id="upgradeBoostPage">
+                    <div class="upgrade-card" id="upgradeBoostFull">
                         <div class="upgrade-icon"><i class="fas fa-rocket"></i></div>
                         <div class="upgrade-title">Boost Power</div>
                         <div class="upgrade-desc">+5% all earnings per level</div>
                         <div class="upgrade-footer">
-                            <span class="upgrade-price"><i class="fas fa-coins"></i> <span id="boostPricePage">1000</span></span>
-                            <span class="upgrade-level" id="boostLevelPage">Lv.0</span>
+                            <span class="upgrade-price" id="boostPriceFull">1000</span>
+                            <span id="boostLevelFull">Lv.0</span>
                         </div>
                     </div>
-                    
-                    <div class="upgrade-card" id="upgradeCritPage">
+                    <div class="upgrade-card" id="upgradeCrit">
                         <div class="upgrade-icon"><i class="fas fa-star"></i></div>
                         <div class="upgrade-title">Critical Hit</div>
                         <div class="upgrade-desc">+5% crit chance per level</div>
                         <div class="upgrade-footer">
-                            <span class="upgrade-price"><i class="fas fa-coins"></i> <span id="critPricePage">2000</span></span>
-                            <span class="upgrade-level" id="critLevelPage">Lv.0</span>
+                            <span class="upgrade-price" id="critPrice">2000</span>
+                            <span id="critLevel">Lv.0</span>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Tasks Page -->
+            <div class="page" id="tasksPage">
+                <div class="section-title">📋 SOCIAL TASKS</div>
+                <div class="tasks-list">
+                    <div class="task-item">
+                        <div class="task-icon telegram"><i class="fab fa-telegram-plane"></i></div>
+                        <div class="task-info">
+                            <div class="task-name">Join Telegram Channel</div>
+                            <div class="task-reward">+500 coins</div>
+                        </div>
+                        <button class="task-btn" id="taskTelegram" data-task="telegram">CHECK</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-icon telegram"><i class="fab fa-telegram"></i></div>
+                        <div class="task-info">
+                            <div class="task-name">Join Telegram Group</div>
+                            <div class="task-reward">+500 coins</div>
+                        </div>
+                        <button class="task-btn" id="taskTelegramGroup" data-task="telegram_group">CHECK</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-icon twitter"><i class="fab fa-twitter"></i></div>
+                        <div class="task-info">
+                            <div class="task-name">Follow on Twitter</div>
+                            <div class="task-reward">+1000 coins</div>
+                        </div>
+                        <button class="task-btn" id="taskTwitter" data-task="twitter">CHECK</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-icon instagram"><i class="fab fa-instagram"></i></div>
+                        <div class="task-info">
+                            <div class="task-name">Follow on Instagram</div>
+                            <div class="task-reward">+1000 coins</div>
+                        </div>
+                        <button class="task-btn" id="taskInstagram" data-task="instagram">CHECK</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-icon" style="background: var(--gradient-1);"><i class="fas fa-crown"></i></div>
+                        <div class="task-info">
+                            <div class="task-name">Complete All Tasks</div>
+                            <div class="task-reward">+5000 coins</div>
+                        </div>
+                        <button class="task-btn" id="taskAll" disabled>LOCKED</button>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 12px;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Progress</span>
+                        <span id="taskProgress">0/4</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 6px; margin-top: 8px;">
+                        <div id="taskProgressBar" style="width: 0%; height: 100%; background: var(--gradient-1); border-radius: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Profile Page -->
             <div class="page" id="profilePage">
-                <div class="profile-header">
-                    <div class="profile-avatar" id="profileAvatar"><i class="fas fa-user"></i></div>
-                    <div class="profile-name" id="profileName">Player</div>
-                    <div class="profile-rank" id="profileRank">Rank #0</div>
-                </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-block">
-                        <div class="stat-block-value" id="totalMined">0</div>
-                        <div class="stat-block-label">TOTAL MINED</div>
+                <div class="mining-card" style="padding: 24px;">
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: var(--gradient-1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 40px;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h2 id="profileName">Player</h2>
+                        <div style="color: var(--text-secondary); margin-bottom: 16px;" id="profileRank">Rank #0</div>
                     </div>
-                    <div class="stat-block">
-                        <div class="stat-block-value" id="totalSessions">0</div>
-                        <div class="stat-block-label">MINING SESSIONS</div>
+                    <div class="stats-row" style="margin-bottom: 16px;">
+                        <div class="stat-card"><div class="stat-label">TOTAL MINED</div><div class="stat-value" id="totalMined">0</div></div>
+                        <div class="stat-card"><div class="stat-label">SESSIONS</div><div class="stat-value" id="totalSessions">0</div></div>
                     </div>
-                    <div class="stat-block">
-                        <div class="stat-block-value" id="bestStreak">0</div>
-                        <div class="stat-block-label">BEST STREAK</div>
-                    </div>
-                    <div class="stat-block">
-                        <div class="stat-block-value" id="referralCount">0</div>
-                        <div class="stat-block-label">REFERRALS</div>
+                    <div class="stats-row">
+                        <div class="stat-card"><div class="stat-label">BEST STREAK</div><div class="stat-value" id="bestStreak">0</div></div>
+                        <div class="stat-card"><div class="stat-label">REFERRALS</div><div class="stat-value" id="referralCount">0</div></div>
                     </div>
                 </div>
-                
-                <div class="settings-section">
-                    <div class="settings-title">ACHIEVEMENTS</div>
-                    <div class="stats-grid">
-                        <div class="stat-block" id="achFirstMine"><div class="stat-block-value"><i class="fas fa-microchip"></i></div><div class="stat-block-label">First Mine</div></div>
-                        <div class="stat-block" id="achStreak7"><div class="stat-block-value"><i class="fas fa-fire"></i></div><div class="stat-block-label">7-Day Streak</div></div>
-                        <div class="stat-block" id="achMaster"><div class="stat-block-value"><i class="fas fa-crown"></i></div><div class="stat-block-label">Master Miner</div></div>
-                        <div class="stat-block" id="achRich"><div class="stat-block-value"><i class="fas fa-coins"></i></div><div class="stat-block-label">Getting Rich</div></div>
-                    </div>
+                <div class="section-title">🏆 ACHIEVEMENTS</div>
+                <div class="upgrades-grid">
+                    <div class="upgrade-card" id="achFirst"><div class="upgrade-icon"><i class="fas fa-microchip"></i></div><div class="upgrade-title">First Mine</div></div>
+                    <div class="upgrade-card" id="achStreak"><div class="upgrade-icon"><i class="fas fa-fire"></i></div><div class="upgrade-title">7-Day Streak</div></div>
                 </div>
             </div>
-            
+
             <!-- Settings Page -->
             <div class="page" id="settingsPage">
-                <div class="social-header">
-                    <h1>SETTINGS</h1>
-                    <div class="social-subtitle">Customize your experience</div>
+                <div class="section-title">⚙️ PREFERENCES</div>
+                <div class="task-item" style="justify-content: space-between;">
+                    <span>🔊 Sound Effects</span>
+                    <label class="switch"><input type="checkbox" id="soundEnabled" checked><span style="width: 40px; height: 20px; background: rgba(255,255,255,0.2); display: inline-block; border-radius: 20px; position: relative;"><span style="position: absolute; width: 16px; height: 16px; background: white; border-radius: 50%; top: 2px; left: 2px; transition: 0.2s;"></span></span></label>
                 </div>
-                
-                <div class="settings-section">
-                    <div class="settings-title">PREFERENCES</div>
-                    <div class="settings-item">
-                        <div class="settings-item-left"><div class="settings-icon"><i class="fas fa-bell"></i></div><div><h4>Sound Effects</h4><p style="font-size: 11px; color: var(--text-secondary);">Enable click sounds</p></div></div>
-                        <label class="switch"><input type="checkbox" id="soundEnabled" checked><span class="slider"></span></label>
-                    </div>
-                    <div class="settings-item">
-                        <div class="settings-item-left"><div class="settings-icon"><i class="fas fa-vibrate"></i></div><div><h4>Haptic Feedback</h4><p style="font-size: 11px; color: var(--text-secondary);">Vibration on actions</p></div></div>
-                        <label class="switch"><input type="checkbox" id="hapticEnabled" checked><span class="slider"></span></label>
-                    </div>
-                    <div class="settings-item">
-                        <div class="settings-item-left"><div class="settings-icon"><i class="fas fa-chart-bar"></i></div><div><h4>Animations</h4><p style="font-size: 11px; color: var(--text-secondary);">Visual effects</p></div></div>
-                        <label class="switch"><input type="checkbox" id="animationsEnabled" checked><span class="slider"></span></label>
-                    </div>
-                    <div class="settings-item">
-                        <div class="settings-item-left"><div class="settings-icon"><i class="fas fa-bell"></i></div><div><h4>Notifications</h4><p style="font-size: 11px; color: var(--text-secondary);">Mining reminders</p></div></div>
-                        <label class="switch"><input type="checkbox" id="notificationsEnabled" checked><span class="slider"></span></label>
-                    </div>
+                <div class="task-item" style="justify-content: space-between;">
+                    <span>📳 Haptic Feedback</span>
+                    <label class="switch"><input type="checkbox" id="hapticEnabled" checked></label>
                 </div>
-                
-                <div class="settings-section">
-                    <div class="settings-title">DATA</div>
-                    <div class="settings-item" id="saveGameBtn"><div class="settings-item-left"><div class="settings-icon"><i class="fas fa-save"></i></div><div><h4>Save Game</h4><p style="font-size: 11px; color: var(--text-secondary);">Manual save progress</p></div></div><i class="fas fa-chevron-right"></i></div>
-                    <div class="settings-item" id="resetGameBtn"><div class="settings-item-left"><div class="settings-icon" style="color: #FF6B6B;"><i class="fas fa-trash-alt"></i></div><div><h4 style="color: #FF6B6B;">Reset Game</h4><p style="font-size: 11px; color: var(--text-secondary);">Delete all progress</p></div></div><i class="fas fa-chevron-right"></i></div>
-                </div>
-                
-                <div class="settings-section">
-                    <div class="settings-title">ABOUT</div>
-                    <div class="settings-item"><div class="settings-item-left"><div class="settings-icon"><i class="fas fa-code-branch"></i></div><div><h4>Version</h4><p style="font-size: 11px; color: var(--text-secondary);">3.0.0 - 24H Mining</p></div></div></div>
-                </div>
+                <div class="section-title" style="margin-top: 24px;">💾 DATA</div>
+                <div class="task-item" id="saveGameBtn" style="cursor: pointer;"><span>💾 Save Game</span><i class="fas fa-chevron-right"></i></div>
+                <div class="task-item" id="resetGameBtn" style="cursor: pointer;"><span style="color: #FF6B6B;">⚠️ Reset Game</span><i class="fas fa-chevron-right"></i></div>
+                <div class="section-title" style="margin-top: 24px;">ℹ️ ABOUT</div>
+                <div class="task-item"><span>Version</span><span>3.0.0 - 24H Mining</span></div>
             </div>
         </div>
-        
+
         <div class="bottom-nav">
             <div class="nav-item active" data-page="home"><i class="fas fa-home"></i><span>Mine</span></div>
-            <div class="nav-item" data-page="tasks"><i class="fas fa-tasks"></i><span>Tasks</span></div>
             <div class="nav-item" data-page="upgrades"><i class="fas fa-chart-line"></i><span>Upgrades</span></div>
+            <div class="nav-item" data-page="tasks"><i class="fas fa-tasks"></i><span>Tasks</span></div>
             <div class="nav-item" data-page="profile"><i class="fas fa-user"></i><span>Profile</span></div>
             <div class="nav-item" data-page="settings"><i class="fas fa-cog"></i><span>Settings</span></div>
         </div>
-    </div>
-    
-    <div id="boostCard" class="boost-card" style="display: none; position: fixed; bottom: 80px; left: 16px; right: 16px; z-index: 100;">
-        <i class="fas fa-rocket"></i>
-        <h3>Boost Your Mining!</h3>
-        <p>Double your reward by using a boost</p>
-        <button class="boost-btn" id="boostClaimBtn">USE BOOST (2x)</button>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
         tg.enableClosingConfirmation();
-        
+
+        // Game State
         let gameState = {
             balance: 0,
             mining_level: 1,
@@ -1291,6 +664,7 @@
             total_sessions: 0,
             current_streak: 0,
             best_streak: 0,
+            last_claim_date: null,
             mining_session: null,
             socialTasks: {
                 telegram: { completed: false, claimed: false },
@@ -1299,80 +673,99 @@
                 instagram: { completed: false, claimed: false },
                 all: { completed: false, claimed: false }
             },
-            settings: {
-                soundEnabled: true,
-                hapticEnabled: true,
-                animationsEnabled: true,
-                notificationsEnabled: true
-            }
+            settings: { soundEnabled: true, hapticEnabled: true, animationsEnabled: true }
         };
-        
+
         let timerInterval = null;
-        let currentSession = null;
-        
         const socialLinks = {
             telegram: 'https://t.me/exoticcoofficial',
             telegram_group: 'https://t.me/exoticcoofficialchat',
             twitter: 'https://x.com/ExoticCoDev',
             instagram: 'https://instagram.com/exoticcoofficial'
         };
-        
-        function formatNumber(num) {
-            if (num >= 1000000000) return (num / 1000000000).toFixed(1) + 'B';
-            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-            return Math.floor(num).toString();
+
+        function formatNumber(n) {
+            if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
+            if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
+            if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
+            return Math.floor(n).toString();
         }
-        
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}`;
-            document.body.appendChild(notification);
-            setTimeout(() => notification.remove(), 2000);
+
+        function showNotification(msg) {
+            const notif = document.createElement('div');
+            notif.className = 'notification';
+            notif.innerHTML = msg;
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 2000);
         }
-        
-        function showRewardAnimation(reward, multiplier) {
-            if (!gameState.settings.animationsEnabled) return;
-            const anim = document.createElement('div');
-            anim.className = 'reward-animation';
-            anim.innerHTML = `<div class="reward-content"><i class="fas fa-gem"></i><span class="reward-amount">+${formatNumber(reward)}</span><span class="reward-multiplier">${multiplier}x</span></div>`;
-            document.body.appendChild(anim);
-            setTimeout(() => anim.remove(), 1000);
+
+        function haptic(type = 'light') {
+            if (gameState.settings.hapticEnabled) tg.HapticFeedback.impactOccurred(type);
         }
-        
+
+        function saveGame() {
+            localStorage.setItem('exotic_miner_v3', JSON.stringify(gameState));
+            showNotification('💾 Game saved!');
+        }
+
+        function loadGame() {
+            const saved = localStorage.getItem('exotic_miner_v3');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    Object.assign(gameState, parsed);
+                } catch(e) {}
+            }
+            updateUI();
+            checkTasksProgress();
+            checkMiningStatus();
+        }
+
         function updateUI() {
-            document.getElementById('balanceDisplay').innerHTML = `<i class="fas fa-coins"></i> ${formatNumber(gameState.balance)}`;
-            document.getElementById('miningLevel').textContent = gameState.mining_level;
-            document.getElementById('streakDisplay').textContent = gameState.current_streak;
-            document.getElementById('streakValue').textContent = gameState.current_streak;
+            document.getElementById('balanceDisplay').innerHTML = formatNumber(gameState.balance);
+            document.getElementById('levelDisplay').innerHTML = gameState.mining_level;
+            document.getElementById('streakDisplay').innerHTML = gameState.current_streak;
+            document.getElementById('streakValue').innerHTML = gameState.current_streak;
             
             const miningBonus = (gameState.mining_level - 1) * 10;
-            const earningsBonus = gameState.boost_level * 5;
+            const boostBonus = gameState.boost_level * 5;
+            const multiplier = 1 + (miningBonus + boostBonus) / 100;
             const critChance = Math.min(gameState.crit_level * 5, 30);
-            const multiplier = 1 + (miningBonus / 100) + (earningsBonus / 100);
             
-            document.getElementById('multiplierDisplay').textContent = multiplier.toFixed(1) + 'x';
-            document.getElementById('critDisplay').textContent = critChance + '%';
+            document.getElementById('multiplierDisplay').innerHTML = multiplier.toFixed(1) + 'x';
+            document.getElementById('critDisplay').innerHTML = critChance + '%';
             
-            document.getElementById('miningLevelDisplay').textContent = `Lv.${gameState.mining_level}`;
-            document.getElementById('speedLevelDisplay').textContent = `Lv.${gameState.speed_level}`;
-            document.getElementById('boostLevelDisplay').textContent = `Lv.${gameState.boost_level}`;
-            document.getElementById('critLevelDisplay').textContent = `Lv.${gameState.crit_level}`;
+            const baseReward = 100 * (1 + (gameState.mining_level - 1) * 0.1);
+            const expected = baseReward * multiplier;
+            document.getElementById('expectedReward').innerHTML = formatNumber(expected);
+            
+            // Upgrade displays
+            document.getElementById('miningLevel').innerHTML = `Lv.${gameState.mining_level}`;
+            document.getElementById('boostLevel').innerHTML = `Lv.${gameState.boost_level}`;
+            document.getElementById('speedLevel').innerHTML = `Lv.${gameState.speed_level}`;
+            document.getElementById('critLevel').innerHTML = `Lv.${gameState.crit_level}`;
             
             const miningPrice = Math.floor(100 * Math.pow(1.5, gameState.mining_level - 1));
             const speedPrice = Math.floor(500 * Math.pow(1.5, gameState.speed_level));
             const boostPrice = Math.floor(1000 * Math.pow(1.5, gameState.boost_level));
             const critPrice = Math.floor(2000 * Math.pow(1.5, gameState.crit_level));
             
-            document.getElementById('miningPrice').textContent = formatNumber(miningPrice);
-            document.getElementById('speedPrice').textContent = formatNumber(speedPrice);
-            document.getElementById('boostPrice').textContent = formatNumber(boostPrice);
-            document.getElementById('critPrice').textContent = formatNumber(critPrice);
+            document.getElementById('miningPrice').innerHTML = formatNumber(miningPrice);
+            document.getElementById('miningPriceFull').innerHTML = formatNumber(miningPrice);
+            document.getElementById('speedPrice').innerHTML = formatNumber(speedPrice);
+            document.getElementById('boostPrice').innerHTML = formatNumber(boostPrice);
+            document.getElementById('boostPriceFull').innerHTML = formatNumber(boostPrice);
+            document.getElementById('critPrice').innerHTML = formatNumber(critPrice);
             
-            const baseReward = 100 * (1 + (gameState.mining_level - 1) * 0.1);
-            const expectedReward = baseReward * multiplier;
-            document.getElementById('expectedReward').textContent = formatNumber(expectedReward);
+            document.getElementById('miningLevelFull').innerHTML = `Lv.${gameState.mining_level}`;
+            document.getElementById('boostLevelFull').innerHTML = `Lv.${gameState.boost_level}`;
+            
+            document.getElementById('totalMined').innerHTML = formatNumber(gameState.total_mined);
+            document.getElementById('totalSessions').innerHTML = gameState.total_sessions;
+            document.getElementById('bestStreak').innerHTML = gameState.best_streak;
+            
+            const user = tg.initDataUnsafe?.user;
+            document.getElementById('profileName').innerHTML = user?.first_name || 'Player';
             
             const nextBonus = gameState.current_streak < 7 ? 7 : gameState.current_streak < 30 ? 30 : gameState.current_streak < 100 ? 100 : null;
             if (nextBonus) {
@@ -1381,137 +774,95 @@
             } else {
                 document.getElementById('streakBonus').innerHTML = 'Max streak achieved!';
             }
-            
-            document.getElementById('totalLevelDisplay').textContent = `TOTAL ${gameState.mining_level + gameState.speed_level + gameState.boost_level + gameState.crit_level}`;
-            
-            document.getElementById('totalMined').textContent = formatNumber(gameState.total_mined);
-            document.getElementById('totalSessions').textContent = gameState.total_sessions;
-            document.getElementById('bestStreak').textContent = gameState.best_streak;
-            document.getElementById('referralCount').textContent = 0;
-            
-            const user = tg.initDataUnsafe?.user;
-            document.getElementById('profileName').textContent = user?.first_name || 'Player';
         }
-        
-        function startCountdown(endTime) {
-            if (timerInterval) clearInterval(timerInterval);
-            
-            timerInterval = setInterval(() => {
+
+        function checkMiningStatus() {
+            if (gameState.mining_session && gameState.mining_session.is_active) {
+                const endTime = gameState.mining_session.end_at;
                 const now = Date.now();
-                const remaining = endTime - now;
                 
+                if (now >= endTime) {
+                    document.getElementById('actionBtn').innerHTML = '💰 CLAIM REWARDS';
+                    document.getElementById('actionBtn').classList.add('ready');
+                    document.getElementById('miningIcon').innerHTML = '<i class="fas fa-gem"></i>';
+                    document.getElementById('timerDisplay').innerHTML = '00:00:00';
+                    if (timerInterval) clearInterval(timerInterval);
+                } else {
+                    document.getElementById('actionBtn').innerHTML = '⛏️ MINING...';
+                    document.getElementById('actionBtn').disabled = true;
+                    document.getElementById('miningIcon').innerHTML = '<i class="fas fa-microchip"></i>';
+                    startTimer(endTime);
+                }
+            } else {
+                document.getElementById('actionBtn').innerHTML = '🚀 START MINING';
+                document.getElementById('actionBtn').disabled = false;
+                document.getElementById('actionBtn').classList.remove('ready');
+                document.getElementById('miningIcon').innerHTML = '<i class="fas fa-microchip"></i>';
+                document.getElementById('timerDisplay').innerHTML = '--:--:--';
+                if (timerInterval) clearInterval(timerInterval);
+            }
+        }
+
+        function startTimer(endTime) {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                const remaining = endTime - Date.now();
                 if (remaining <= 0) {
                     clearInterval(timerInterval);
-                    document.getElementById('miningActionBtn').textContent = 'CLAIM REWARDS';
-                    document.getElementById('miningActionBtn').classList.add('ready');
-                    document.getElementById('statusIcon').innerHTML = '<i class="fas fa-gem"></i>';
-                    document.getElementById('timerDisplay').textContent = '00:00:00';
-                    document.getElementById('progressCircle').style.display = 'none';
+                    document.getElementById('actionBtn').innerHTML = '💰 CLAIM REWARDS';
+                    document.getElementById('actionBtn').disabled = false;
+                    document.getElementById('actionBtn').classList.add('ready');
+                    document.getElementById('miningIcon').innerHTML = '<i class="fas fa-gem"></i>';
+                    document.getElementById('timerDisplay').innerHTML = '00:00:00';
                 } else {
                     const hours = Math.floor(remaining / (1000 * 60 * 60));
                     const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-                    document.getElementById('timerDisplay').textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                    
-                    const totalDuration = 24 * 60 * 60 * 1000;
-                    const elapsed = totalDuration - remaining;
-                    const percent = (elapsed / totalDuration) * 100;
-                    const circumference = 2 * Math.PI * 45;
-                    const offset = circumference - (percent / 100) * circumference;
-                    const circle = document.querySelector('.circle-fill');
-                    if (circle) {
-                        circle.style.strokeDasharray = `${circumference} ${circumference}`;
-                        circle.style.strokeDashoffset = offset;
-                    }
-                    document.querySelector('.progress-text').textContent = `${Math.floor(percent)}%`;
+                    document.getElementById('timerDisplay').innerHTML = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 }
             }, 1000);
         }
-        
-        async function loadGameState() {
-            try {
-                const saved = localStorage.getItem('exoticco_game_state');
-                if (saved) {
-                    const parsed = JSON.parse(saved);
-                    Object.assign(gameState, parsed);
-                }
-                updateUI();
-                checkTasksProgress();
-            } catch (e) {
-                console.error('Error loading game state:', e);
-            }
-        }
-        
-        function saveGameState() {
-            try {
-                localStorage.setItem('exoticco_game_state', JSON.stringify(gameState));
-                showNotification('Game saved!', 'success');
-            } catch (e) {
-                console.error('Error saving game state:', e);
-            }
-        }
-        
-        async function startMining() {
+
+        function startMining() {
             if (gameState.mining_session && gameState.mining_session.is_active) {
-                const remaining = gameState.mining_session.end_at - Date.now();
-                if (remaining > 0) {
-                    showNotification('Mining already in progress!', 'error');
-                    return;
+                if (Date.now() >= gameState.mining_session.end_at) {
+                    claimRewards();
+                } else {
+                    showNotification('Mining already in progress!');
                 }
+                return;
             }
             
-            const result = { success: true, base_reward: 100 * (1 + (gameState.mining_level - 1) * 0.1) };
+            const baseReward = 100 * (1 + (gameState.mining_level - 1) * 0.1);
+            const speedReduction = Math.min(0.4, gameState.speed_level * 0.02);
+            const duration = 24 * 60 * 60 * 1000 * (1 - speedReduction);
+            const endTime = Date.now() + duration;
             
-            if (result.success) {
-                const endTime = Date.now() + (24 * 60 * 60 * 1000);
-                const speedReduction = gameState.speed_level * 0.02;
-                const adjustedDuration = 24 * 60 * 60 * 1000 * (1 - Math.min(0.4, speedReduction));
-                const adjustedEndTime = Date.now() + adjustedDuration;
-                
-                gameState.mining_session = {
-                    is_active: true,
-                    started_at: Date.now(),
-                    end_at: adjustedEndTime,
-                    base_reward: result.base_reward
-                };
-                
-                currentSession = gameState.mining_session;
-                startCountdown(adjustedEndTime);
-                document.getElementById('miningActionBtn').textContent = 'MINING...';
-                document.getElementById('miningActionBtn').disabled = true;
-                document.getElementById('statusIcon').innerHTML = '<i class="fas fa-microchip"></i>';
-                document.getElementById('progressCircle').style.display = 'block';
-                
-                saveGameState();
-                showNotification('Mining started! Come back in 24 hours!', 'success');
-                
-                if (gameState.settings.notificationsEnabled) {
-                    setTimeout(() => {
-                        showNotification('⛏️ Your mining rig is working! Come back in 24 hours', 'info');
-                    }, 5000);
-                }
-            }
+            gameState.mining_session = {
+                is_active: true,
+                started_at: Date.now(),
+                end_at: endTime,
+                base_reward: baseReward
+            };
+            
+            saveGame();
+            checkMiningStatus();
+            showNotification('⛏️ Mining started! Come back in 24 hours!');
+            haptic('medium');
         }
-        
-        async function claimRewards(useBoost = false) {
+
+        function claimRewards() {
             if (!gameState.mining_session || !gameState.mining_session.is_active) {
-                showNotification('No active mining session!', 'error');
+                showNotification('No active mining session!');
                 return;
             }
             
             if (Date.now() < gameState.mining_session.end_at) {
-                showNotification('Mining still in progress!', 'error');
+                showNotification('Mining still in progress!');
                 return;
             }
             
             let multiplier = 1 + ((gameState.mining_level - 1) * 0.1) + (gameState.boost_level * 0.05);
-            let boostUsed = false;
-            
-            if (useBoost) {
-                multiplier *= 2;
-                boostUsed = true;
-            }
-            
             const critChance = Math.min(gameState.crit_level * 0.05, 0.3);
             const isCritical = Math.random() < critChance;
             if (isCritical) multiplier *= 2;
@@ -1522,243 +873,163 @@
             gameState.total_mined += reward;
             gameState.total_sessions++;
             
-            const timeSinceLastClaim = gameState.last_claim_date ? (Date.now() - gameState.last_claim_date) / (1000 * 60 * 60 * 24) : 1;
-            if (timeSinceLastClaim <= 1.5) {
+            // Update streak
+            const lastClaim = gameState.last_claim_date;
+            const now = Date.now();
+            if (!lastClaim || (now - lastClaim) <= (36 * 60 * 60 * 1000)) {
                 gameState.current_streak++;
-                if (gameState.current_streak > gameState.best_streak) {
-                    gameState.best_streak = gameState.current_streak;
-                }
+                if (gameState.current_streak > gameState.best_streak) gameState.best_streak = gameState.current_streak;
             } else {
                 gameState.current_streak = 1;
             }
             
-            if (gameState.current_streak === 7) {
-                gameState.balance += 500;
-                showNotification('🎉 7-Day Streak Bonus! +500 coins', 'success');
-            } else if (gameState.current_streak === 30) {
-                gameState.balance += 2500;
-                showNotification('🎉 30-Day Streak Bonus! +2500 coins', 'success');
-            } else if (gameState.current_streak === 100) {
-                gameState.balance += 10000;
-                showNotification('🎉 100-Day Streak Bonus! +10000 coins', 'success');
-            }
+            // Streak bonuses
+            if (gameState.current_streak === 7) { gameState.balance += 500; showNotification('🎉 7-Day Streak Bonus! +500'); }
+            else if (gameState.current_streak === 30) { gameState.balance += 2500; showNotification('🎉 30-Day Streak Bonus! +2500'); }
+            else if (gameState.current_streak === 100) { gameState.balance += 10000; showNotification('🎉 100-Day Streak Bonus! +10000'); }
             
-            gameState.last_claim_date = Date.now();
-            gameState.mining_session = { is_active: false };
-            currentSession = null;
-            
-            if (timerInterval) clearInterval(timerInterval);
-            
-            showRewardAnimation(reward, multiplier);
-            showNotification(`You mined ${formatNumber(reward)} coins!${isCritical ? ' CRITICAL HIT!' : ''}`, 'success');
-            
-            document.getElementById('miningActionBtn').textContent = 'START MINING';
-            document.getElementById('miningActionBtn').disabled = false;
-            document.getElementById('miningActionBtn').classList.remove('ready');
-            document.getElementById('statusIcon').innerHTML = '<i class="fas fa-microchip"></i>';
-            document.getElementById('timerDisplay').textContent = '--:--:--';
-            document.getElementById('progressCircle').style.display = 'none';
+            gameState.last_claim_date = now;
+            gameState.mining_session = null;
             
             updateUI();
-            saveGameState();
+            saveGame();
+            checkMiningStatus();
+            showNotification(`✨ You mined ${formatNumber(reward)} coins!${isCritical ? ' CRITICAL!' : ''}`);
+            haptic('heavy');
         }
-        
-        async function buyUpgrade(type) {
-            let price, levelField, currentLevel;
+
+        function buyUpgrade(type) {
+            let price, success = false;
             
             switch(type) {
                 case 'mining':
-                    currentLevel = gameState.mining_level;
-                    price = Math.floor(100 * Math.pow(1.5, currentLevel - 1));
+                    price = Math.floor(100 * Math.pow(1.5, gameState.mining_level - 1));
                     if (gameState.balance >= price) {
                         gameState.balance -= price;
                         gameState.mining_level++;
-                        showNotification('Mining Power upgraded! +10% reward', 'success');
-                    } else {
-                        showNotification(`Need ${formatNumber(price)} coins!`, 'error');
-                        return;
+                        success = true;
                     }
                     break;
                 case 'speed':
-                    currentLevel = gameState.speed_level;
-                    price = Math.floor(500 * Math.pow(1.5, currentLevel));
+                    price = Math.floor(500 * Math.pow(1.5, gameState.speed_level));
                     if (gameState.balance >= price) {
                         gameState.balance -= price;
                         gameState.speed_level++;
-                        showNotification('Speed Boost upgraded! -2% mining time', 'success');
-                    } else {
-                        showNotification(`Need ${formatNumber(price)} coins!`, 'error');
-                        return;
+                        success = true;
                     }
                     break;
                 case 'boost':
-                    currentLevel = gameState.boost_level;
-                    price = Math.floor(1000 * Math.pow(1.5, currentLevel));
+                    price = Math.floor(1000 * Math.pow(1.5, gameState.boost_level));
                     if (gameState.balance >= price) {
                         gameState.balance -= price;
                         gameState.boost_level++;
-                        showNotification('Boost Power upgraded! +5% earnings', 'success');
-                    } else {
-                        showNotification(`Need ${formatNumber(price)} coins!`, 'error');
-                        return;
+                        success = true;
                     }
                     break;
                 case 'crit':
-                    currentLevel = gameState.crit_level;
-                    price = Math.floor(2000 * Math.pow(1.5, currentLevel));
+                    price = Math.floor(2000 * Math.pow(1.5, gameState.crit_level));
                     if (gameState.balance >= price) {
                         gameState.balance -= price;
                         gameState.crit_level++;
-                        showNotification('Critical Hit upgraded! +5% crit chance', 'success');
-                    } else {
-                        showNotification(`Need ${formatNumber(price)} coins!`, 'error');
-                        return;
+                        success = true;
                     }
                     break;
             }
             
-            if (gameState.settings.hapticEnabled) {
-                tg.HapticFeedback.notificationOccurred('success');
+            if (success) {
+                updateUI();
+                saveGame();
+                showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} upgraded!`);
+                haptic('light');
+            } else {
+                showNotification('Not enough coins!');
+                haptic('error');
             }
-            
-            updateUI();
-            saveGameState();
         }
-        
+
         function checkSocialTask(taskId) {
             if (gameState.socialTasks[taskId].claimed) {
-                showNotification('Task already claimed!', 'error');
+                showNotification('Already claimed!');
                 return;
             }
-            
-            if (socialLinks[taskId]) {
-                window.open(socialLinks[taskId], '_blank');
-            }
-            
-            showNotification('Please complete the task and click CHECK again', 'info');
-            
+            if (socialLinks[taskId]) window.open(socialLinks[taskId], '_blank');
+            showNotification('Complete the task, then click CHECK again');
             setTimeout(() => {
                 gameState.socialTasks[taskId].completed = true;
                 checkTasksProgress();
-                showNotification('Task completed! Click CLAIM to get reward', 'success');
+                showNotification('Task completed! Click CLAIM');
             }, 3000);
         }
-        
+
         function claimTask(taskId, reward) {
-            if (gameState.socialTasks[taskId].claimed) {
-                showNotification('Already claimed!', 'error');
-                return;
-            }
-            
-            if (!gameState.socialTasks[taskId].completed) {
-                showNotification('Complete the task first!', 'error');
-                return;
-            }
-            
+            if (gameState.socialTasks[taskId].claimed) return showNotification('Already claimed!');
+            if (!gameState.socialTasks[taskId].completed) return showNotification('Complete the task first!');
             gameState.balance += reward;
             gameState.socialTasks[taskId].claimed = true;
-            gameState.total_mined += reward;
-            
-            showNotification(`+${reward} coins earned!`, 'success');
-            checkTasksProgress();
             updateUI();
-            saveGameState();
+            saveGame();
+            checkTasksProgress();
+            showNotification(`+${reward} coins!`);
         }
-        
+
         function checkTasksProgress() {
             const tasks = ['telegram', 'telegram_group', 'twitter', 'instagram'];
-            const completed = tasks.filter(t => gameState.socialTasks[t].claimed).length;
-            const progress = (completed / tasks.length) * 100;
+            let completed = 0;
+            tasks.forEach(t => { if (gameState.socialTasks[t].claimed) completed++; });
+            document.getElementById('taskProgress').innerHTML = `${completed}/4`;
+            document.getElementById('taskProgressBar').style.width = `${(completed/4)*100}%`;
             
-            document.getElementById('taskProgressBar').style.width = progress + '%';
-            document.getElementById('taskProgressPercent').textContent = Math.floor(progress) + '%';
-            
-            const allCompleted = tasks.every(t => gameState.socialTasks[t].claimed);
-            const allTask = document.getElementById('taskAll');
-            
+            const allCompleted = completed === 4;
+            const allBtn = document.getElementById('taskAll');
             if (allCompleted && !gameState.socialTasks.all.claimed) {
-                allTask.textContent = 'CLAIM BONUS';
-                allTask.disabled = false;
-                gameState.socialTasks.all.completed = true;
+                allBtn.innerHTML = 'CLAIM BONUS';
+                allBtn.disabled = false;
             } else if (gameState.socialTasks.all.claimed) {
-                allTask.textContent = 'CLAIMED';
-                allTask.classList.add('completed');
-                allTask.disabled = true;
+                allBtn.innerHTML = 'CLAIMED';
+                allBtn.classList.add('completed');
             } else {
-                allTask.textContent = 'LOCKED';
-                allTask.disabled = true;
+                allBtn.innerHTML = 'LOCKED';
+                allBtn.disabled = true;
             }
             
-            tasks.forEach(taskId => {
-                const task = gameState.socialTasks[taskId];
-                const button = document.getElementById(`task${taskId.charAt(0).toUpperCase() + taskId.slice(1).replace('_group', 'Group')}`);
-                if (button) {
-                    if (task.claimed) {
-                        button.textContent = 'CLAIMED';
-                        button.classList.add('completed');
-                        button.disabled = true;
-                    } else if (task.completed) {
-                        button.textContent = 'CLAIM';
-                        button.classList.remove('completed');
-                        button.disabled = false;
+            tasks.forEach(t => {
+                const btn = document.getElementById(`task${t.charAt(0).toUpperCase() + t.slice(1).replace('_group', 'Group')}`);
+                if (btn) {
+                    if (gameState.socialTasks[t].claimed) {
+                        btn.innerHTML = 'CLAIMED';
+                        btn.classList.add('completed');
+                    } else if (gameState.socialTasks[t].completed) {
+                        btn.innerHTML = 'CLAIM';
+                        btn.classList.remove('completed');
                     } else {
-                        button.textContent = 'CHECK';
-                        button.classList.remove('completed');
-                        button.disabled = false;
+                        btn.innerHTML = 'CHECK';
+                        btn.classList.remove('completed');
                     }
                 }
             });
         }
-        
+
         function resetGame() {
-            if (confirm('⚠️ WARNING: This will delete ALL your progress! Are you sure?')) {
-                gameState = {
-                    balance: 0,
-                    mining_level: 1,
-                    speed_level: 0,
-                    boost_level: 0,
-                    crit_level: 0,
-                    total_mined: 0,
-                    total_sessions: 0,
-                    current_streak: 0,
-                    best_streak: 0,
-                    mining_session: null,
-                    socialTasks: {
-                        telegram: { completed: false, claimed: false },
-                        telegram_group: { completed: false, claimed: false },
-                        twitter: { completed: false, claimed: false },
-                        instagram: { completed: false, claimed: false },
-                        all: { completed: false, claimed: false }
-                    },
-                    settings: gameState.settings,
-                    last_claim_date: null
-                };
-                
-                if (timerInterval) clearInterval(timerInterval);
-                currentSession = null;
-                
-                updateUI();
-                checkTasksProgress();
-                saveGameState();
-                showNotification('Game reset!', 'info');
+            if (confirm('⚠️ Delete ALL progress? This cannot be undone!')) {
+                localStorage.removeItem('exotic_miner_v3');
+                location.reload();
             }
         }
-        
-        document.getElementById('miningActionBtn').addEventListener('click', () => {
-            if (gameState.mining_session && gameState.mining_session.is_active) {
-                if (Date.now() >= gameState.mining_session.end_at) {
-                    claimRewards(false);
-                } else {
-                    showNotification('Mining in progress!', 'error');
-                }
+
+        // Event Listeners
+        document.getElementById('actionBtn').addEventListener('click', () => {
+            if (gameState.mining_session && gameState.mining_session.is_active && Date.now() >= gameState.mining_session.end_at) {
+                claimRewards();
             } else {
                 startMining();
             }
         });
         
         document.getElementById('upgradeMining').addEventListener('click', () => buyUpgrade('mining'));
+        document.getElementById('upgradeMiningFull').addEventListener('click', () => buyUpgrade('mining'));
         document.getElementById('upgradeSpeed').addEventListener('click', () => buyUpgrade('speed'));
         document.getElementById('upgradeBoost').addEventListener('click', () => buyUpgrade('boost'));
+        document.getElementById('upgradeBoostFull').addEventListener('click', () => buyUpgrade('boost'));
         document.getElementById('upgradeCrit').addEventListener('click', () => buyUpgrade('crit'));
         
         document.getElementById('taskTelegram').addEventListener('click', () => checkSocialTask('telegram'));
@@ -1767,32 +1038,27 @@
         document.getElementById('taskInstagram').addEventListener('click', () => checkSocialTask('instagram'));
         document.getElementById('taskAll').addEventListener('click', () => claimTask('all', 5000));
         
-        document.getElementById('saveGameBtn').addEventListener('click', saveGameState);
+        document.getElementById('saveGameBtn').addEventListener('click', saveGame);
         document.getElementById('resetGameBtn').addEventListener('click', resetGame);
-        document.getElementById('refreshBtn').addEventListener('click', () => { updateUI(); checkTasksProgress(); showNotification('Refreshed!', 'info'); });
-        
-        document.getElementById('boostClaimBtn').addEventListener('click', () => {
-            document.getElementById('boostCard').style.display = 'none';
-            claimRewards(true);
-        });
-        
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const pageId = item.dataset.page;
-                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-                item.classList.add('active');
-                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-                document.getElementById(`${pageId}Page`).classList.add('active');
-                if (gameState.settings.hapticEnabled) tg.HapticFeedback.impactOccurred('light');
-            });
+        document.getElementById('viewAllUpgradesBtn').addEventListener('click', () => {
+            document.querySelectorAll('.nav-item')[1].click();
         });
         
         document.getElementById('soundEnabled').addEventListener('change', (e) => gameState.settings.soundEnabled = e.target.checked);
         document.getElementById('hapticEnabled').addEventListener('change', (e) => gameState.settings.hapticEnabled = e.target.checked);
-        document.getElementById('animationsEnabled').addEventListener('change', (e) => gameState.settings.animationsEnabled = e.target.checked);
-        document.getElementById('notificationsEnabled').addEventListener('change', (e) => gameState.settings.notificationsEnabled = e.target.checked);
         
-        loadGameState();
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const page = item.dataset.page;
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                item.classList.add('active');
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(`${page}Page`).classList.add('active');
+                haptic('light');
+            });
+        });
+        
+        loadGame();
         tg.ready();
     </script>
 </body>
